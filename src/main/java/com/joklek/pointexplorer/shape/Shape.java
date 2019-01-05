@@ -8,5 +8,7 @@ public interface Shape {
     UUID getId();
     double getArea();
     boolean doesIncludePoint(double x, double y);
-    boolean doesIncludePoint(Point point);
+    default boolean doesIncludePoint(Point point) {
+        return doesIncludePoint(point.getX(), point.getY());
+    }
 }

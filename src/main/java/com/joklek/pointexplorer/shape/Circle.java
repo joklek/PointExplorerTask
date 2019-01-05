@@ -37,11 +37,6 @@ public class Circle implements Shape {
     }
 
     @Override
-    public boolean doesIncludePoint(Point point) {
-        return doesIncludePoint(point.getX(), point.getY());
-    }
-
-    @Override
     public boolean doesIncludePoint(double x, double y) {
         // sqrt((xp-xc)^2 + (yp-yc)^2)
         double distanceFromCenter = Math.sqrt(Math.pow(center.getX() - x, 2) + Math.pow(center.getY() - y, 2));
