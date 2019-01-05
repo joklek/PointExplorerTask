@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer.modules;
 
+import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
 import com.joklek.pointexplorer.shape.Point;
 import com.joklek.pointexplorer.repo.ShapeRepository;
 import com.joklek.pointexplorer.shape.Circle;
@@ -15,15 +16,22 @@ public class CircleModule implements ConsoleModule {
     private static final String HANDLE = "circle";
 
     @Override
-    public String parseCommand(String[] arguments) throws IllegalStateException {
+    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
 
         if(arguments.length != 3) {
-            throw new IllegalStateException("Circle must contain 3 arguments in this order: center_x center_y radius");
+            throw new IncorrectModuleArgumentException("Circle must contain 3 arguments in this order: center_x center_y radius");
         }
-        // Todo handle parsing exceptions
-        double x = Double.parseDouble(arguments[0]);
-        double y = Double.parseDouble(arguments[1]);
-        double radius = Double.parseDouble(arguments[2]);
+
+        double x, y;
+        double radius;
+        try {
+            x = Double.parseDouble(arguments[0]);
+            y = Double.parseDouble(arguments[1]);
+            radius = Double.parseDouble(arguments[2]);
+        }
+        catch (NumberFormatException ex) {
+            throw new IncorrectModuleArgumentException("Not all arguments were valid numbers");
+        }
 
         Circle newShape = new Circle(UUID.randomUUID(), new Point(x, y), radius);
         repo.addNew(newShape);

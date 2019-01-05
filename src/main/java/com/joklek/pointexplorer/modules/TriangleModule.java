@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer.modules;
 
+import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
 import com.joklek.pointexplorer.shape.Point;
 import com.joklek.pointexplorer.repo.ShapeRepository;
 import com.joklek.pointexplorer.shape.Shape;
@@ -16,10 +17,10 @@ public class TriangleModule implements ConsoleModule {
     private static final String HANDLE = "triangle";
 
     @Override
-    public String parseCommand(String[] arguments) throws IllegalStateException {
+    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
 
         if(arguments.length != 6) {
-            throw new IllegalStateException("Triangle must contain 6 arguments in this order: p1_x p1_y p2_x p2_y p3_x p3_y");
+            throw new IncorrectModuleArgumentException("Triangle must contain 6 arguments in this order: p1_x p1_y p2_x p2_y p3_x p3_y");
         }
         // Todo handle parsing exceptions
 
@@ -35,8 +36,7 @@ public class TriangleModule implements ConsoleModule {
             p2y = Double.parseDouble(arguments[5]);
         }
         catch (NumberFormatException ex) {
-            throw new IllegalStateException();
-            // TODO
+            throw new IncorrectModuleArgumentException("Not all arguments were valid numbers");
         }
 
         Shape newShape = new Triangle(UUID.randomUUID(), new Point(p0x, p0y), new Point(p1x, p1y), new Point(p2x, p2y));

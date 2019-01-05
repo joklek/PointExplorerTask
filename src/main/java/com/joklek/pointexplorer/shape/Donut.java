@@ -1,5 +1,7 @@
 package com.joklek.pointexplorer.shape;
 
+import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
+
 import java.util.UUID;
 
 public class Donut implements Shape {
@@ -19,7 +21,7 @@ public class Donut implements Shape {
 
     public Donut(Point center, double holeRadius, double outerRadius) {
         if(holeRadius > outerRadius) {
-            throw new IllegalStateException();
+            throw new IllegalArgumentException(String.format("Hole radius should be smaller than outer radius. %f is not smaller than %f", holeRadius, outerRadius));
         }
 
         this.center = center;

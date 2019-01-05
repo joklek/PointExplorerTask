@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer;
 
+import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
 import com.joklek.pointexplorer.modules.ConsoleModule;
 import com.joklek.pointexplorer.repo.ShapeRepository;
 import com.joklek.pointexplorer.shape.Shape;
@@ -53,8 +54,12 @@ public class PointExplorer {
             String[] arguments = Arrays.copyOfRange(splitResults, 1, splitResults.length);
 
             if(modulesWithHandle.containsKey(command)) {
-                String output = modulesWithHandle.get(command).parseCommand(arguments);
-                System.out.print(output);
+                try {
+                    String output = modulesWithHandle.get(command).parseCommand(arguments);
+                    System.out.print(output);
+                } catch (IncorrectModuleArgumentException e) {
+                    System.out.println(String.format("Incorrect usage of command '%s' with error message '%s'", command, e.getMessage()));
+                }
             }
             else {
                 System.out.printf("Given command '%s' does not exist, for more information type \"help\"%n", line);

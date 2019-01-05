@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer.modules;
 
+import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class HelpModule implements ConsoleModule {
     private static final String HANDLE = "help";
 
     @Override
-    public String parseCommand(String[] arguments) throws IllegalStateException {
+    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
         StringBuilder messageBuilder = new StringBuilder();
 
         if(arguments.length != 0) {

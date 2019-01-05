@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer.modules;
 
+import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
 import com.joklek.pointexplorer.shape.Point;
 import com.joklek.pointexplorer.repo.ShapeRepository;
 import com.joklek.pointexplorer.shape.Donut;
@@ -16,10 +17,10 @@ public class DonutModule implements ConsoleModule {
     private static final String HANDLE = "donut";
 
     @Override
-    public String parseCommand(String[] arguments) throws IllegalStateException {
+    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
 
         if(arguments.length != 4) {
-            throw new IllegalStateException("Donut must contain 4 arguments in this order: center_x center_y hole_radius outer_radius");
+            throw new IncorrectModuleArgumentException("Donut must contain 4 arguments in this order: center_x center_y hole_radius outer_radius");
         }
 
         double x;
@@ -33,8 +34,10 @@ public class DonutModule implements ConsoleModule {
             outerRadius = Double.parseDouble(arguments[3]);
         }
         catch (NumberFormatException ex) {
-            throw new IllegalStateException();
-            // TODO
+            throw new IncorrectModuleArgumentException("Not all arguments were valid numbers");
+        }
+        if(holeRadius > outerRadius) {
+            throw new IncorrectModuleArgumentException(String.format("Hole radius should be smaller than outer radius. %f is not smaller than %f", holeRadius, outerRadius));
         }
 
         Shape newShape = new Donut(UUID.randomUUID(), new Point(x, y), holeRadius, outerRadius);
