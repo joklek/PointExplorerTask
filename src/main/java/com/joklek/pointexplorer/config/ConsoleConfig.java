@@ -1,5 +1,6 @@
-package com.joklek.pointexplorer;
+package com.joklek.pointexplorer.config;
 
+import com.joklek.pointexplorer.PointExplorer;
 import com.joklek.pointexplorer.modules.*;
 import com.joklek.pointexplorer.repo.DefaultShapeRepo;
 import com.joklek.pointexplorer.repo.ShapeRepository;

@@ -1,6 +1,5 @@
 package com.joklek.pointexplorer.shape;
 
-import com.joklek.pointexplorer.Point;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

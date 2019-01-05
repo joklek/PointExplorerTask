@@ -1,4 +1,4 @@
-package com.joklek.pointexplorer;
+package com.joklek.pointexplorer.shape;
 
 public class Point {
     private final double x, y;

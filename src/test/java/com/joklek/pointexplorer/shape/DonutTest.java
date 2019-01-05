@@ -1,6 +1,5 @@
 package com.joklek.pointexplorer.shape;
 
-import com.joklek.pointexplorer.Point;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 

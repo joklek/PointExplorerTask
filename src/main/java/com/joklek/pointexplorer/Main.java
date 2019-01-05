@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer;
 
+import com.joklek.pointexplorer.config.ConsoleConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {

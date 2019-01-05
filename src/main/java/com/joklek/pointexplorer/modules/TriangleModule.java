@@ -1,6 +1,6 @@
 package com.joklek.pointexplorer.modules;
 
-import com.joklek.pointexplorer.Point;
+import com.joklek.pointexplorer.shape.Point;
 import com.joklek.pointexplorer.repo.ShapeRepository;
 import com.joklek.pointexplorer.shape.Shape;
 import com.joklek.pointexplorer.shape.Triangle;
