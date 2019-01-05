@@ -12,18 +12,31 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         List<Shape> shapes = new ArrayList<>();
 
-
         while(true) {
             String line = scanner.nextLine().trim();
             if(line.isEmpty()) {
                 continue;
             }
             String[] splitResults = line.split("\\s+");
-
             String command = splitResults[0];
 
+            if(splitResults.length == 2) {
+                try {
+                    double x = Double.parseDouble(splitResults[0]);
+                    double y = Double.parseDouble(splitResults[1]);
 
-            String[] shapeArguments = Arrays.copyOfRange(splitResults, 1, splitResults.length);
+                    double areaSum = 0;
+                    for (Shape shape : shapes) {
+                        if (shape.doesIncludePoint(x, y)) {
+                            System.out.printf("%s %f %n", shape.getId(), shape.getArea());
+                        }
+                    }
+                    System.out.printf("The area sum of all shapes who have given point inside is %f %n", areaSum);
+                }
+                catch (NumberFormatException ex){
+                    // nothing, we will try other options
+                }
+            }
 
             if(command.equalsIgnoreCase("help")) {
                 // TODO
@@ -33,6 +46,7 @@ public class Main {
                 break;
             }
             else if(command.equalsIgnoreCase("circle")) {
+                String[] shapeArguments = Arrays.copyOfRange(splitResults, 1, splitResults.length);
                 if(shapeArguments.length != 3) {
                     throw new IllegalStateException("Circle must contain 3 arguments in this order: center_x center_y radius");
                 }
@@ -46,6 +60,7 @@ public class Main {
                 System.out.printf("shape %s: circle with centre at (%f, %f) and radius %f %n", newShape.getId(), x, y, radius);
             }
             else if(command.equalsIgnoreCase("triangle")) {
+                String[] shapeArguments = Arrays.copyOfRange(splitResults, 1, splitResults.length);
                 if(shapeArguments.length != 6) {
                     throw new IllegalStateException("Triangle must contain 6 arguments in this order: p1_x p1_y p2_x p2_y p3_x p3_y");
                 }
@@ -60,9 +75,10 @@ public class Main {
                 Shape newShape = new Triangle(UUID.randomUUID(), new Point(p0x, p0y), new Point(p1x, p1y), new Point(p2x, p2y));
                 shapes.add(newShape);
 
-                System.out.printf("shape %s: triangle with points: p1(%f, %f), p2(%f, %f), p2(%f, %f)", newShape.getId(), p0x, p0y, p1x, p1y, p2x, p2y);
+                System.out.printf("shape %s: triangle with points: p1(%f, %f), p2(%f, %f), p2(%f, %f)%n", newShape.getId(), p0x, p0y, p1x, p1y, p2x, p2y);
             }
             else if(command.equalsIgnoreCase("donut")) {
+                String[] shapeArguments = Arrays.copyOfRange(splitResults, 1, splitResults.length);
                 if(shapeArguments.length != 4) {
                     throw new IllegalStateException("Donut must contain 4 arguments in this order: center_x center_y hole_radius outer_radius");
                 }
@@ -75,6 +91,9 @@ public class Main {
                 Shape newShape = new Donut(UUID.randomUUID(), new Point(x, y), holeRadius, outerRadius);
                 shapes.add(newShape);
                 System.out.printf("shape %s: donut with centre at (%f, %f) and hole radius %f and outer radius %f %n", newShape.getId(), x, y, holeRadius, outerRadius);
+            }
+            else {
+                System.out.println("Given command does not exist, for more information type \"help\"");
             }
         }
     }
