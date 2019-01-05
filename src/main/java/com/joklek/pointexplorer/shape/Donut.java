@@ -8,30 +8,27 @@ public class Donut implements Shape {
 
     private UUID id;
     private final Point center;
-    private final double radius1;
-    private final double radius2;
+    private final double holeRadius;
+    private final double outerRadius;
     private final Circle hole;
     private final Circle donut;
     private final double area;
 
-    public Donut(Point center, double radius1, double radius2) {
+    public Donut(UUID id, Point center, double holeRadius, double outerRadius) {
+        this(center, holeRadius, outerRadius);
+        this.id = id;
+    }
+
+    public Donut(Point center, double holeRadius, double outerRadius) {
+        if(holeRadius > outerRadius) {
+            throw new IllegalStateException();
+        }
+
         this.center = center;
-        this.radius1 = radius1;
-        this.radius2 = radius2;
-
-        double holeRadius;
-        double donutRadius;
-        if(radius1 > radius2) {
-            donutRadius = radius1;
-            holeRadius = radius2;
-        }
-        else {
-            donutRadius = radius2;
-            holeRadius = radius1;
-        }
-
+        this.holeRadius = holeRadius;
+        this.outerRadius = outerRadius;
         this.hole = new Circle(center, holeRadius);
-        this.donut = new Circle(center, donutRadius);
+        this.donut = new Circle(center, outerRadius);
         this.area = donut.getArea() - hole.getArea();
     }
 
