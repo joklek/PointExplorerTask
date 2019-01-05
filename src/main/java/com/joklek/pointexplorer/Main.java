@@ -16,7 +16,7 @@ public class Main {
         while(true) {
             String line = scanner.nextLine().trim();
             if(line.isEmpty()) {
-
+                continue;
             }
             String[] splitResults = line.split("\\s+");
 
@@ -27,10 +27,10 @@ public class Main {
 
             if(command.equalsIgnoreCase("help")) {
                 // TODO
-                break;
+                continue;
             }
             else if(command.equalsIgnoreCase("exit")) {
-                return;
+                break;
             }
             else if(command.equalsIgnoreCase("circle")) {
                 if(shapeArguments.length != 3) {
@@ -77,6 +77,5 @@ public class Main {
                 System.out.printf("shape %s: donut with centre at (%f, %f) and hole radius %f and outer radius %f %n", newShape.getId(), x, y, holeRadius, outerRadius);
             }
         }
-
     }
 }
