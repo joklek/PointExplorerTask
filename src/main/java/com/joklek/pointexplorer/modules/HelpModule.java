@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+// Todo, maybe this should be a standalone module?
 public class HelpModule implements ConsoleModule {
 
     @Autowired
