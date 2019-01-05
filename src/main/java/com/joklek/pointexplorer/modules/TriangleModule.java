@@ -1,18 +1,20 @@
 package com.joklek.pointexplorer.modules;
 
 import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
-import com.joklek.pointexplorer.shape.Point;
 import com.joklek.pointexplorer.repo.ShapeRepository;
+import com.joklek.pointexplorer.shape.Point;
 import com.joklek.pointexplorer.shape.Shape;
-import com.joklek.pointexplorer.shape.Triangle;
+import com.joklek.pointexplorer.shape.factory.TriangleFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.UUID;
-
+@SuppressWarnings("squid:S1659")
 public class TriangleModule implements ConsoleModule {
 
     @Autowired
     private ShapeRepository repo;
+
+    @Autowired
+    private TriangleFactory factory;
 
     private static final String HANDLE = "triangle";
 
@@ -22,7 +24,6 @@ public class TriangleModule implements ConsoleModule {
         if(arguments.length != 6) {
             throw new IncorrectModuleArgumentException("Triangle must contain 6 arguments in this order: p1_x p1_y p2_x p2_y p3_x p3_y");
         }
-        // Todo handle parsing exceptions
 
         double p0x, p0y;
         double p1x, p1y;
@@ -39,7 +40,7 @@ public class TriangleModule implements ConsoleModule {
             throw new IncorrectModuleArgumentException("Not all arguments were valid numbers");
         }
 
-        Shape newShape = new Triangle(UUID.randomUUID(), new Point(p0x, p0y), new Point(p1x, p1y), new Point(p2x, p2y));
+        Shape newShape = factory.createNew(new Point(p0x, p0y), new Point(p1x, p1y), new Point(p2x, p2y));
         repo.addNew(newShape);
 
         return String.format("shape %s: triangle with points: p1(%f, %f), p2(%f, %f), p2(%f, %f)%n", newShape.getId(), p0x, p0y, p1x, p1y, p2x, p2y);

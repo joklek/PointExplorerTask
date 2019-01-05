@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer.shape;
 
+@SuppressWarnings("squid:S1659")
 public class Point {
     private final double x, y;
 

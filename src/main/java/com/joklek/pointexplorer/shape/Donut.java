@@ -1,7 +1,5 @@
 package com.joklek.pointexplorer.shape;
 
-import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
-
 import java.util.UUID;
 
 public class Donut implements Shape {

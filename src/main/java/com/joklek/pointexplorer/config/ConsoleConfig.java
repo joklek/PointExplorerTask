@@ -4,6 +4,9 @@ import com.joklek.pointexplorer.PointExplorer;
 import com.joklek.pointexplorer.modules.*;
 import com.joklek.pointexplorer.repo.DefaultShapeRepo;
 import com.joklek.pointexplorer.repo.ShapeRepository;
+import com.joklek.pointexplorer.shape.factory.CircleFactory;
+import com.joklek.pointexplorer.shape.factory.DonutFactory;
+import com.joklek.pointexplorer.shape.factory.TriangleFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,13 +26,28 @@ public class ConsoleConfig {
     }
 
     @Bean
+    public CircleFactory circleFactory() {
+        return new CircleFactory();
+    }
+
+    @Bean
     public ConsoleModule triangleModule() {
         return new TriangleModule();
     }
 
     @Bean
+    public TriangleFactory triangleFactory() {
+        return new TriangleFactory();
+    }
+
+    @Bean
     public ConsoleModule donutModule() {
         return new DonutModule();
+    }
+
+    @Bean
+    public DonutFactory donutFactory() {
+        return new DonutFactory();
     }
 
     @Bean

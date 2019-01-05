@@ -2,6 +2,7 @@ package com.joklek.pointexplorer.shape;
 
 import java.util.UUID;
 
+@SuppressWarnings("squid:S1659")
 public class Triangle implements Shape {
 
     private UUID id;
