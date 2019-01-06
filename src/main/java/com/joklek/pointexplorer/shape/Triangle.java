@@ -1,5 +1,7 @@
 package com.joklek.pointexplorer.shape;
 
+import org.springframework.lang.NonNull;
+
 import java.util.UUID;
 
 @SuppressWarnings("squid:S1659")
@@ -31,6 +33,7 @@ public class Triangle implements Shape {
     }
 
     @Override
+    @NonNull
     public UUID getId() {
         return id;
     }

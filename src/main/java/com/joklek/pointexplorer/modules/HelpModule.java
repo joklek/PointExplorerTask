@@ -2,6 +2,7 @@ package com.joklek.pointexplorer.modules;
 
 import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -13,7 +14,8 @@ public class HelpModule implements ConsoleModule {
     private static final String HANDLE = "help";
 
     @Override
-    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
+    @NonNull
+    public String parseCommand(@NonNull String[] arguments) throws IncorrectModuleArgumentException {
         StringBuilder messageBuilder = new StringBuilder();
 
         if(arguments.length != 0) {
@@ -28,11 +30,13 @@ public class HelpModule implements ConsoleModule {
     }
 
     @Override
+    @NonNull
     public String getModuleHandle() {
         return HANDLE;
     }
 
     @Override
+    @NonNull
     public String getHelpMessage() {
         return String.format("Usage should be: %s", HANDLE);
     }

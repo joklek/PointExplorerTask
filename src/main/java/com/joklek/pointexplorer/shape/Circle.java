@@ -1,5 +1,7 @@
 package com.joklek.pointexplorer.shape;
 
+import org.springframework.lang.NonNull;
+
 import java.util.UUID;
 
 public class Circle implements Shape {
@@ -25,6 +27,7 @@ public class Circle implements Shape {
     }
 
     @Override
+    @NonNull
     public UUID getId() {
         return id;
     }

@@ -1,5 +1,7 @@
 package com.joklek.pointexplorer.shape;
 
+import org.springframework.lang.NonNull;
+
 import java.util.UUID;
 
 public class Donut implements Shape {
@@ -35,6 +37,7 @@ public class Donut implements Shape {
     }
 
     @Override
+    @NonNull
     public UUID getId() {
         return id;
     }

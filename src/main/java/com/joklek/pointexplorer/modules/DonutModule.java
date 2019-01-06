@@ -5,6 +5,7 @@ import com.joklek.pointexplorer.repo.ShapeRepository;
 import com.joklek.pointexplorer.shape.Shape;
 import com.joklek.pointexplorer.shape.factory.DonutFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 
 public class DonutModule implements ConsoleModule {
 
@@ -17,7 +18,7 @@ public class DonutModule implements ConsoleModule {
     private static final String HANDLE = "donut";
 
     @Override
-    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
+    public String parseCommand(@NonNull String[] arguments) throws IncorrectModuleArgumentException {
 
         if(arguments.length != 4) {
             throw new IncorrectModuleArgumentException("Donut must contain 4 arguments in this order: center_x center_y hole_radius outer_radius");
@@ -46,11 +47,13 @@ public class DonutModule implements ConsoleModule {
     }
 
     @Override
+    @NonNull
     public String getModuleHandle() {
         return HANDLE;
     }
 
     @Override
+    @NonNull
     public String getHelpMessage() {
         return String.format("Usage should be: %s center_x center_y hole_radius outer_radius", HANDLE);
     }

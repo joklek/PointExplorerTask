@@ -5,6 +5,7 @@ import com.joklek.pointexplorer.repo.ShapeRepository;
 import com.joklek.pointexplorer.shape.Circle;
 import com.joklek.pointexplorer.shape.factory.CircleFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 
 @SuppressWarnings("squid:S1659")
 public class CircleModule implements ConsoleModule {
@@ -18,7 +19,8 @@ public class CircleModule implements ConsoleModule {
     private static final String HANDLE = "circle";
 
     @Override
-    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
+    @NonNull
+    public String parseCommand(@NonNull String[] arguments) throws IncorrectModuleArgumentException {
 
         if(arguments.length != 3) {
             throw new IncorrectModuleArgumentException("Circle must contain 3 arguments in this order: center_x center_y radius");
@@ -41,11 +43,13 @@ public class CircleModule implements ConsoleModule {
     }
 
     @Override
+    @NonNull
     public String getModuleHandle() {
         return HANDLE;
     }
 
     @Override
+    @NonNull
     public String getHelpMessage() {
         return String.format("Usage should be: %s center_x center_y radius", HANDLE);
     }

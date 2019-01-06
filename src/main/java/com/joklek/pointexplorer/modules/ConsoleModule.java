@@ -1,6 +1,7 @@
 package com.joklek.pointexplorer.modules;
 
 import com.joklek.pointexplorer.exception.IncorrectModuleArgumentException;
+import org.springframework.lang.NonNull;
 
 /**
  * A console module interface
@@ -12,15 +13,18 @@ public interface ConsoleModule {
      * @return message to print
      * @throws IncorrectModuleArgumentException exception with message provided by module
      */
-    String parseCommand(String[] arguments) throws IncorrectModuleArgumentException;
+    @NonNull
+    String parseCommand(@NonNull String[] arguments) throws IncorrectModuleArgumentException;
 
     /**
      * Gets handle by which the module will be called
      */
+    @NonNull
     String getModuleHandle();
 
     /**
      * Help message to be provided for the user
      */
+    @NonNull
     String getHelpMessage();
 }

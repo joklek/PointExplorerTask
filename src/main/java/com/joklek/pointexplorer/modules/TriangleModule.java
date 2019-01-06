@@ -6,6 +6,7 @@ import com.joklek.pointexplorer.shape.Point;
 import com.joklek.pointexplorer.shape.Shape;
 import com.joklek.pointexplorer.shape.factory.TriangleFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 
 @SuppressWarnings("squid:S1659")
 public class TriangleModule implements ConsoleModule {
@@ -19,7 +20,8 @@ public class TriangleModule implements ConsoleModule {
     private static final String HANDLE = "triangle";
 
     @Override
-    public String parseCommand(String[] arguments) throws IncorrectModuleArgumentException {
+    @NonNull
+    public String parseCommand(@NonNull String[] arguments) throws IncorrectModuleArgumentException {
 
         if(arguments.length != 6) {
             throw new IncorrectModuleArgumentException("Triangle must contain 6 arguments in this order: p1_x p1_y p2_x p2_y p3_x p3_y");
@@ -47,11 +49,13 @@ public class TriangleModule implements ConsoleModule {
     }
 
     @Override
+    @NonNull
     public String getModuleHandle() {
         return HANDLE;
     }
 
     @Override
+    @NonNull
     public String getHelpMessage() {
         return String.format("Usage should be: %s p1_x p1_y p2_x p2_y p3_x p3_y", HANDLE);
     }
