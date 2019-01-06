@@ -1,4 +1,4 @@
-#Intro
+# Intro
 This is an application made for a job application and fun.
 The goal of this program is to interactively read shape definitions from the user 
 and then determine if any provided points reside within provided shapes. 
