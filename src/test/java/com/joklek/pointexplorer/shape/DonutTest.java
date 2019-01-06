@@ -26,7 +26,7 @@ public class DonutTest {
         int holeRadius = 4;
         int outerRadius = 3;
         Executable constructor = () -> new Donut(center, holeRadius, outerRadius);
-        assertThrows(IllegalStateException.class, constructor);
+        assertThrows(IllegalArgumentException.class, constructor);
     }
 
     @Test
