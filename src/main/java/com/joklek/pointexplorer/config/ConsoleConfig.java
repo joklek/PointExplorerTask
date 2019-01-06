@@ -4,9 +4,7 @@ import com.joklek.pointexplorer.PointExplorer;
 import com.joklek.pointexplorer.modules.*;
 import com.joklek.pointexplorer.repo.DefaultShapeRepo;
 import com.joklek.pointexplorer.repo.ShapeRepository;
-import com.joklek.pointexplorer.shape.factory.CircleFactory;
-import com.joklek.pointexplorer.shape.factory.DonutFactory;
-import com.joklek.pointexplorer.shape.factory.TriangleFactory;
+import com.joklek.pointexplorer.shape.factory.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -53,6 +51,16 @@ public class ConsoleConfig {
     @Bean
     public ConsoleModule helpModule() {
         return new HelpModule();
+    }
+
+    @Bean
+    public EllipseModule ellipseModule() {
+        return new EllipseModule();
+    }
+
+    @Bean
+    public EllipseFactory ellipseFactory() {
+        return new EllipseFactory();
     }
 
     @Bean

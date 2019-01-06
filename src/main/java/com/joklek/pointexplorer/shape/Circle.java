@@ -4,6 +4,7 @@ import org.springframework.lang.NonNull;
 
 import java.util.UUID;
 
+// Should circle use ellipse logic?
 public class Circle implements Shape {
 
     private UUID id;
