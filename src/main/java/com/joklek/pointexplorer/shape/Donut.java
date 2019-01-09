@@ -10,8 +10,6 @@ public class Donut implements Shape {
     private final Point center;
     private final double holeRadius;
     private final double outerRadius;
-    private final Circle hole;
-    private final Circle donut;
     private final double area;
 
     public Donut(UUID id, Point center, double holeRadius, double outerRadius) {
@@ -25,11 +23,21 @@ public class Donut implements Shape {
         }
 
         this.center = center;
-        this.holeRadius = holeRadius;
-        this.outerRadius = outerRadius;
-        this.hole = new Circle(center, holeRadius);
-        this.donut = new Circle(center, outerRadius);
-        this.area = donut.getArea() - hole.getArea();
+        if(holeRadius <= 0) {
+            throw new IllegalArgumentException("Radius must be positive, but is " + holeRadius);
+        }
+        else {
+            this.holeRadius = holeRadius;
+        }
+        if(outerRadius <= 0) {
+            throw new IllegalArgumentException("Radius must be positive, but is " + outerRadius);
+        }
+        else {
+            this.outerRadius = outerRadius;
+        }
+        double outerArea = Math.PI * Math.pow(outerRadius, 2);
+        double holeArea = Math.PI * Math.pow(holeRadius, 2);
+        this.area = outerArea - holeArea;
     }
 
     void setId(UUID id) {
@@ -49,6 +57,19 @@ public class Donut implements Shape {
 
     @Override
     public boolean doesIncludePoint(double x, double y) {
-        return !hole.doesIncludePoint(x, y) && donut.doesIncludePoint(x, y);
+        double distanceFromCenter = Math.sqrt(Math.pow(center.getX() - x, 2) + Math.pow(center.getY() - y, 2));
+        return distanceFromCenter <= outerRadius && distanceFromCenter >= holeRadius ;
+    }
+
+    @Override
+    public String toString() {
+        return "Donut{" +
+                "id=" + id +
+                ", x center=" + center.getX() +
+                ", y center=" + center.getY() +
+                ", holeRadius=" + holeRadius +
+                ", outerRadius=" + outerRadius +
+                ", area=" + area +
+                '}';
     }
 }

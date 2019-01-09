@@ -19,7 +19,12 @@ public class Circle implements Shape {
 
     Circle(Point center, double radius) {
         this.center = center;
-        this.radius = radius;
+        if(radius <= 0) {
+            throw new IllegalArgumentException("Radius must be positive, but is " + radius);
+        }
+        else {
+            this.radius = radius;
+        }
         this.area = Math.PI * Math.pow(radius, 2);
     }
 
@@ -42,6 +47,17 @@ public class Circle implements Shape {
     public boolean doesIncludePoint(double x, double y) {
         // sqrt((xp-xc)^2 + (yp-yc)^2)
         double distanceFromCenter = Math.sqrt(Math.pow(center.getX() - x, 2) + Math.pow(center.getY() - y, 2));
-        return distanceFromCenter < radius;
+        return distanceFromCenter <= radius;
+    }
+
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "id=" + id +
+                ", x center=" + center.getX() +
+                ", y center=" + center.getY() +
+                ", radius=" + radius +
+                ", area=" + area +
+                '}';
     }
 }

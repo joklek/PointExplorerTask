@@ -40,6 +40,12 @@ public class DonutModule implements ConsoleModule {
         if(holeRadius > outerRadius) {
             throw new IncorrectModuleArgumentException(String.format("Hole radius should be smaller than outer radius. %f is not smaller than %f", holeRadius, outerRadius));
         }
+        else if(holeRadius <= 0) {
+            throw new IncorrectModuleArgumentException("Hole radius must be positive, but is " + holeRadius);
+        }
+        else if(outerRadius <= 0) {
+            throw new IncorrectModuleArgumentException("Outer radius must be positive, but is " + outerRadius);
+        }
 
         Shape newShape = factory.createNew(x, y, holeRadius, outerRadius);
         repo.addNew(newShape);

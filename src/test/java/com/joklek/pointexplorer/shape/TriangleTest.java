@@ -1,5 +1,6 @@
 package com.joklek.pointexplorer.shape;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,9 +9,24 @@ import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class TriangleTest {
+
+    @Test
+    public void shouldIncludePointOnEdge() {
+        Point p0 = new Point(0, 0);
+        Point p1 = new Point(0, 5);
+        Point p2 = new Point(5, 0);
+        Triangle triangle = new Triangle(p0, p1, p2);
+
+        assertTrue(triangle.doesIncludePoint(0, 0));
+        assertTrue(triangle.doesIncludePoint(0, 5));
+        assertTrue(triangle.doesIncludePoint(0, 3));
+        assertTrue(triangle.doesIncludePoint(5, 0));
+        assertTrue(triangle.doesIncludePoint(3, 0));
+    }
 
     private static Stream<Arguments> coordinatesAndAreas() {
         return Stream.of(
@@ -28,7 +44,6 @@ public class TriangleTest {
                           2)
         );
     }
-
     @ParameterizedTest
     @MethodSource("coordinatesAndAreas")
     void shouldGetCorrectArea(double x0, double y0, double x1, double y1, double x2, double y2, double area) {
@@ -68,7 +83,6 @@ public class TriangleTest {
                         1.5, 1.5, false)
         );
     }
-
     @ParameterizedTest
     @MethodSource("coordinatesPointAndItsInclusion")
     void shouldIncludePointInTriangle(double x0, double y0, double x1, double y1, double x2, double y2, double px, double py, boolean result) {

@@ -37,6 +37,12 @@ public class EllipseModule implements ConsoleModule{
         catch (NumberFormatException ex) {
             throw new IncorrectModuleArgumentException("Not all arguments were valid numbers");
         }
+        if(radius1 <= 0) {
+            throw new IncorrectModuleArgumentException("Hole radius must be positive, but is " + radius1);
+        }
+        if(radius2 <= 0) {
+            throw new IncorrectModuleArgumentException("Hole radius must be positive, but is " + radius2);
+        }
 
         Ellipse newShape = factory.createNew(x, y, radius1, radius2);
         repo.addNew(newShape);

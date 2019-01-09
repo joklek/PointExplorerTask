@@ -68,6 +68,22 @@ class CircleModuleTest {
         assertThrows(IncorrectModuleArgumentException.class, parseExecution);
     }
 
+    private static Stream<Arguments> badRadius() {
+        return Stream.of(
+                arguments("0"),
+                arguments("-1"),
+                arguments("-100")
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("badRadius")
+    public void shouldThrowExceptionWhenBadRadius(String badRadius) {
+        String[] arguments = new String[]{"0", "1", badRadius};
+
+        Executable parseExecution = () -> module.parseCommand(arguments);
+        assertThrows(IncorrectModuleArgumentException.class, parseExecution);
+    }
+
     private static Stream<Arguments> incorrectInput() {
         return Stream.of(
                 arguments("0", "d", "0"),

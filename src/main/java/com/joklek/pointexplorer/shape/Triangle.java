@@ -48,6 +48,20 @@ public class Triangle implements Shape {
         double s = (p0.getY() * p2.getX() - p0.getX() * p2.getY() + (p2.getY() - p0.getY()) * x + (p0.getX() - p2.getX()) * y) * sign;
         double t = (p0.getX() * p1.getY() - p0.getY() * p1.getX() + (p0.getY() - p1.getY()) * x + (p1.getX() - p0.getX()) * y) * sign;
 
-        return s > 0 && t > 0 && (s + t) < 2 * area;
+        return s >= 0 && t >= 0 && (s + t) <= 2 * area;
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle{" +
+                "id=" + id +
+                ", x p0=" + p0.getX() +
+                ", y p0=" + p0.getY() +
+                ", x p1=" + p1.getX() +
+                ", y p1=" + p1.getY() +
+                ", x p2=" + p2.getX() +
+                ", y p2=" + p2.getY() +
+                ", area=" + area +
+                '}';
     }
 }

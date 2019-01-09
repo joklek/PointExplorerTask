@@ -71,7 +71,7 @@ public class PointExplorer {
         double areaSum = 0;
         for (Shape shape : repo.getAll()) {
             if (shape.doesIncludePoint(x, y)) {
-                System.out.printf("%s %f %n", shape.getId(), shape.getArea());
+                System.out.println(shape.toString());
                 areaSum += shape.getArea();
             }
         }

@@ -36,6 +36,9 @@ public class CircleModule implements ConsoleModule {
         catch (NumberFormatException ex) {
             throw new IncorrectModuleArgumentException("Not all arguments were valid numbers");
         }
+        if(radius <= 0) {
+            throw new IncorrectModuleArgumentException("Radius must be positive, but is " + radius);
+        }
 
         Circle newShape = factory.createNew(x, y, radius);
         repo.addNew(newShape);
