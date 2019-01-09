@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/joklek/PointExplorerTask.svg?style=svg)](https://circleci.com/gh/joklek/PointExplorerTask)
+
 # Intro
 This is an application made for a job application and fun.
 The goal of this program is to interactively read shape definitions from the user 
